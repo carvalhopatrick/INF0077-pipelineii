@@ -37,6 +37,18 @@ Por padrão o dataset não fica salvo no repositório Github, apenas links.
 
 #### Criação do ambiente
 `dvc init`
+`dvc remote add -d DS-gdrive gdrive://<<folder_id>>`
+
+#### Extração e versionamento do DS
+- Descompactar o zip com o dataset pasta `ds`
+- Impedir o versionamento do DS pelo git:
+`echo "/ds" >> .gitignore`
+- Adicionar a pasta `ds` para gerenciamento do DVC
+`dvc add .\ds\`
+- Adicionar o arquivo de configuração do ds no git
+`git add ds.dvc`
+- Versionar DS
+`dvc push` 
 
 ...
 
