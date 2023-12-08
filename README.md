@@ -53,8 +53,14 @@ Por padrão o dataset não fica salvo no repositório Github, apenas links.
 
 ### T2
 ### Passo 1 - criação do dvc.yaml e params.yaml
+- Instalar as dependencias `pip install -r requirements.txt` apresentadas na monitória
 - Associar o DVC.yaml com o params.yaml por meio do **_params:- params.yaml_**
+- Adicionar `/model.keras` no .gitignore
+- Modificar o model.py e incluir o módulo Live() e callback
+- Executar o model.py para criar um modelo "model.keras" e o diretório dvclive com as métricas de avaliação; Loss e acurácia
 
-
+### Passo 2 - Experimento e DVC
+- Executar o comando `dvc exp run --name v_0` para noemar o experimento como "v_0" e rodar o experimento
+- Executar os comandos `git push origin main`, `dvc push` e `dvc exp push origin v0`
 
 
