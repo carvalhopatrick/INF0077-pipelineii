@@ -48,7 +48,13 @@ Por padrão o dataset não fica salvo no repositório Github, apenas links.
 - Adicionar o arquivo de configuração do ds no git
 `git add ds.dvc`
 - Versionar DS
-`dvc push` 
+- `dvc push` 
 
-...
+
+### T2
+### Passo 1 - criação do dvc.yaml e params.yaml
+- Associar o DVC.yaml com o params.yaml por meio do **_params:- params.yaml_**
+
+
+
 
