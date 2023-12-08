@@ -1,6 +1,6 @@
 stages:
 	train:
-		cmd: python src/main.py
+		cmd: python src/model.py
 		deps:
 		- src
 		- ds
