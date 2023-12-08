@@ -76,6 +76,7 @@ class Training:
         )
         return train_ds, val_ds
 
+
     def train(self):
         train_ds, val_ds = self.load_ds()
 
@@ -105,8 +106,16 @@ class Training:
 
 
 def main():
-    params = params_show
-
+    # params = {
+    #     "input_height": 224,
+    #     "input_width": 224,
+    #     "input_channels": 3,
+    #     "batch_size": 64,
+    #     "epochs": 10,
+    #     "verbose": 1,
+    #     "model_filepath": "./model.keras"}
+    params = params_show()
+    print(params)
     with Live() as dvclive:
         Training(dvclive, params).build_model().train().save_model()
 
