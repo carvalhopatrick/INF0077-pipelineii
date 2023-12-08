@@ -1,9 +1,0 @@
-stages:
-	train:
-		cmd: python src/model.py
-		deps:
-		- src
-		- ds
-
-params:
-- params.yaml
