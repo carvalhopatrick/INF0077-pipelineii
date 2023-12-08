@@ -62,5 +62,8 @@ Por padrão o dataset não fica salvo no repositório Github, apenas links.
 ### Passo 2 - Experimento e DVC
 - Executar o comando `dvc exp run --name v_0` para noemar o experimento como "v_0" e rodar o experimento
 - Executar os comandos `git push origin main`, `dvc push` e `dvc exp push origin v0`
+- Adicionar o projeto do Github no https://studio.iterative.ai/ para 
 
-
+### Passo 3 - Criando um pipeline
+- Criar um diretório `.gihub/workflows` e criar um arquivo `pipeline.yaml` para criar o pipeline com todas as configurações e atualizações
+- o pipeline vai executar todas as vezes que ocorrer um `push`
