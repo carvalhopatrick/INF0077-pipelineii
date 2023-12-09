@@ -51,19 +51,37 @@ Por padrão o dataset não fica salvo no repositório Github, apenas links.
 - `dvc push` 
 
 
-### T2
+### Parte 2 - Rastreabilidade dos experimentos (T2)
 ### Passo 1 - criação do dvc.yaml e params.yaml
-- Instalar as dependencias `pip install -r requirements.txt` apresentadas na monitória
+- Instalar a dependência 
+`pip install dvclive`. 
+A dependência também foi adicionado ao arquivo de requisitos do projeto. Uma alternativa é
+`pip install -r requirements.txt`
 - Associar o DVC.yaml com o params.yaml por meio do **_params:- params.yaml_**
-- Adicionar `/model.keras` no .gitignore
+- Adicionar `/model.keras` no .gitignore 
 - Modificar o model.py e incluir o módulo Live() e callback
 - Executar o model.py para criar um modelo "model.keras" e o diretório dvclive com as métricas de avaliação; Loss e acurácia
 
 ### Passo 2 - Experimento e DVC
-- Executar o comando `dvc exp run --name v_0` para noemar o experimento como "v_0" e rodar o experimento
+Os parâmetros do experimento devem ser modificados no arquivo `params.xml`. Podem ser modificados os seguintes parâmetros de treinamento do modelo:
+
+|Parâmetro|Descrição|Valor padrão|
+|--|--|--|
+|input_height|Altura em pixels das imagens no dataset| 224|
+|input_width|Largura em pixels das imagens no dataset| 224|
+|input_channels|Quantidade de canais das imagens| 3|
+|batch_size|Quantidade de imagens em cada lote de treino| 64|
+|epochs|Quantidade de épocas do treino| 10|
+|verbose|Imprime informações de depuração| 1|
+|model_filepath|Arquivo de saída do modelo| "./model.keras"|
+|dense_layer_1|Dimensão da primeira camada densa|  120|
+|dense_layer_2|Dimensão da segunda camada densa| 84|
+
+- Executar o comando `dvc exp run --name v0` para nomear o experimento como "v0" e rodar o experimento
 - Executar os comandos `git push origin main`, `dvc push` e `dvc exp push origin v0`
-- Adicionar o projeto do Github no https://studio.iterative.ai/ para 
+- Adicionar o projeto do Github no https://studio.iterative.ai/ para visualização dos resultados
 
 ### Passo 3 - Criando um pipeline
 - Criar um diretório `.gihub/workflows` e criar um arquivo `pipeline.yaml` para criar o pipeline com todas as configurações e atualizações
-- o pipeline vai executar todas as vezes que ocorrer um `push`
+- Definir a variável `secrets.GDRIVE_CREDENTIALS_DATA` nas configurações do projeto no GitHub para que o GitHub Actions tenha acesso ao repositório DVC. O conteúdo deve ser o mesmo do JSON criado pelo DVC quando da autorização de acesso ao GoogleDrive.
+- O pipeline vai executar todas as vezes que ocorrer um `push`

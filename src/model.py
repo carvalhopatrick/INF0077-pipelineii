@@ -30,8 +30,8 @@ class Training:
             layers.Conv2D(16, (5, 5), activation='relu'),
             layers.MaxPooling2D((2, 2)),
             layers.Flatten(),
-            layers.Dense(120, activation='relu'),
-            layers.Dense(84, activation='relu'),
+            layers.Dense(self.params['dense_layer_1'], activation='relu'),
+            layers.Dense(self.params['dense_layer_2'], activation='relu'),
             layers.Dense(1, activation='sigmoid')
         ])
 
