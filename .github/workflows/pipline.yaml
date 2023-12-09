@@ -18,7 +18,7 @@ jobs:
           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
         run: |
           echo "Starting"
-          pip install -r requirements.txt  # Install dependencies
+          pip install tensorflow pillow scipy  ## install dependencies (plan B)
           dvc pull --verbose
           dvc repro                        # Reproduce pipeline
       - uses: iterative/setup-cml@v2
