@@ -2,8 +2,8 @@ input_height: 224
 input_width: 224
 input_channels: 3
 batch_size: 64
-epochs: 1
+epochs: 7
 verbose: 1
 model_filepath: "./model.keras"
-dense_layer_1: 120
-dense_layer_2: 84
+dense_layer_1: 60
+dense_layer_2: 52
