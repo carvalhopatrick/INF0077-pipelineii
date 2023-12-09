@@ -18,42 +18,42 @@ jobs:
           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
         run: |
           echo "Starting"
-          pip install tensorflow pillow scipy  ## install dependencies (plan B)
+          pip install tensorflow pillow scipy dvclive ## install dependencies (plan B)
           dvc pull --verbose
           dvc repro                        # Reproduce pipeline
-      - uses: iterative/setup-cml@v2
-      - name: Create CML report
-        env:
-          GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
-          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          # npm i -g @dvcorg/cml@0.19.1
-          cml --version
+      # - uses: iterative/setup-cml@v2
+      # - name: Create CML report
+      #   env:
+      #     GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
+      #     REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   run: |
+      #     # npm i -g @dvcorg/cml@0.19.1
+      #     cml --version
 
-          echo "## Metrics: workflow vs. main" >> report.md
-          git fetch --depth=1 origin main:main
-          dvc metrics diff main --md >> report.md
-          echo "### Training loss" >> report.md
-          dvc plots diff \
-            --target dvclive/plots/metrics/train/loss.tsv --show-vega main > vega.json
-          vl2png vega.json > plot-loss.png
+      #     echo "## Metrics: workflow vs. main" >> report.md
+      #     git fetch --depth=1 origin main:main
+      #     dvc metrics diff main --md >> report.md
+      #     echo "### Training loss" >> report.md
+      #     dvc plots diff \
+      #       --target dvclive/plots/metrics/train/loss.tsv --show-vega main > vega.json
+      #     vl2png vega.json > plot-loss.png
 
-          echo '![](./plot-loss.png "Training Loss")' >> report.md
-          echo "### Training accuracy" >> report.md
-          dvc plots diff \
-            --target dvclive/plots/metrics/train/accuracy.tsv --show-vega main > vega.json
+      #     echo '![](./plot-loss.png "Training Loss")' >> report.md
+      #     echo "### Training accuracy" >> report.md
+      #     dvc plots diff \
+      #       --target dvclive/plots/metrics/train/accuracy.tsv --show-vega main > vega.json
 
-          vl2png vega.json > plot-accuracy.png
-          echo '![](./plot-accuracy.png "Training Accuracy")' >> report.md
-          echo "### Eval loss" >> report.md
-          dvc plots diff \
-            --target dvclive/plots/metrics/eval/loss.tsv --show-vega main > vega.json
-          vl2png vega.json > plot-loss.png
-          echo '![](./plot-loss.png "Eval Loss")' >> report.md
+      #     vl2png vega.json > plot-accuracy.png
+      #     echo '![](./plot-accuracy.png "Training Accuracy")' >> report.md
+      #     echo "### Eval loss" >> report.md
+      #     dvc plots diff \
+      #       --target dvclive/plots/metrics/eval/loss.tsv --show-vega main > vega.json
+      #     vl2png vega.json > plot-loss.png
+      #     echo '![](./plot-loss.png "Eval Loss")' >> report.md
 
-          echo "### Eval accuracy" >> report.md
-          dvc plots diff \
-            --target dvclive/plots/metrics/eval/accuracy.tsv --show-vega main > vega.json
-          vl2png vega.json > plot-accuracy.png
-          echo '![](./plot-accuracy.png "Eval Accuracy")' >> report.md
-          cml comment create --target=pr --publish report.md
+      #     echo "### Eval accuracy" >> report.md
+      #     dvc plots diff \
+      #       --target dvclive/plots/metrics/eval/accuracy.tsv --show-vega main > vega.json
+      #     vl2png vega.json > plot-accuracy.png
+      #     echo '![](./plot-accuracy.png "Eval Accuracy")' >> report.md
+      #     cml comment create --target=pr --publish report.md
