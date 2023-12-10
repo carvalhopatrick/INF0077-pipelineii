@@ -19,6 +19,8 @@ jobs:
         run: |
           echo "Starting"
           pip install tensorflow pillow scipy dvclive dvc-gdrive ## install dependencies (plan B)
+          dvc remote list --verbose
+          dvc status --verbose
           dvc pull --verbose
           dvc repro                        # Reproduce pipeline
       # - uses: iterative/setup-cml@v2
