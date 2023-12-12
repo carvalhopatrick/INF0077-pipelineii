@@ -23,7 +23,7 @@ jobs:
           dvc doctor
           dvc remote list --verbose
           dvc status --verbose
-          dvc pull --verbose
+          dvc pull -j 1 --verbose
           dvc repro                        # Reproduce pipeline
       # - uses: iterative/setup-cml@v2
       # - name: Create CML report
