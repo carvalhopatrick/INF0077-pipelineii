@@ -18,8 +18,8 @@ jobs:
           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
         run: |
           echo "Starting"
-          # pip install tensorflow pillow scipy dvclive dvc-gdrive ## install dependencies (plan B)
-          pip install dvclive dvc-gdrive ## install dependencies (plan B)
+          pip install tensorflow pillow scipy dvclive dvc-gdrive ## install dependencies (plan B)
+          ###pip install dvclive dvc-gdrive ## install dependencies (plan B)
           dvc doctor
           dvc remote list --verbose
           dvc status --verbose
